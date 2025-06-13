@@ -1,0 +1,97 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "Toyota",
+      "description": "Corolla",
+      "rating": 1,
+      "category": "Snack",
+      "pricePerNight": 45,
+      "availability": true,
+      "imageUrl": "",
+      "stock":"40 in stock"
+      
+    },
+    {
+      "id": "2",
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2022,
+      "type": "SUV",
+      "pricePerNight": 120,
+      "availability": false,
+      "imageUrl": ""
+    },
+    {
+      "id": "3",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2021,
+      "type": "Sedan",
+      "pricePerNight": 55,
+      "availability": true,
+      "imageUrl": ""
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "fullName": "Tahir",
+      "email": "hgh@gmail.com",
+      "password":"111111",
+      "confirmPassword":"111111",
+      "role": "Client",
+      "phone": "0502666666",
+      "registeredAt": "2024-01-15"
+    },
+    {
+      "id": "2",
+      "fullName": "Aysel Huseynova",
+      "email": "aysel.huseynova@example.com",
+       "password":"111111",
+      "confirmPassword":"111111",
+      "role": "Client",
+      "phone": "0501234567",
+      "registeredAt": "2024-03-10"
+    },
+    {
+      "id": "3",
+      "fullName": "Elvin Mammadov",
+      "email": "elvin.mammadov@example.com",
+       "password":"111111",
+      "confirmPassword":"111111",
+      "role": "Admin",
+      "phone": "0519876543",
+      "registeredAt": "2023-11-25"
+    }
+  ],
+  "rentals": [
+    {
+      "id": "1",
+      "userId": "1",
+      "carId": "1",
+      "rentalDate": "2025-05-20",
+      "returnDate": "2025-05-22",
+      "status": "booked",
+      "totalPrice": "200"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "carId": "3",
+      "rentalDate": "2025-06-01",
+      "returnDate": "2025-06-04",
+      "status": "completed",
+      "totalPrice": "165"
+    },
+    {
+      "id": "3",
+      "userId": "3",
+      "carId": "2",
+      "rentalDate": "2025-06-10",
+      "returnDate": "2025-06-12",
+      "status": "cancelled",
+      "totalPrice": "0"
+    }
+  ]
+}
