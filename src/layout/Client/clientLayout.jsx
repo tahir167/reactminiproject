@@ -1,11 +1,12 @@
 import React from 'react'
-import header from '../../components/Client/header'
 import { Outlet } from "react-router"
+import Header from '../../components/Client/header'
 const ClientLayout = () => {
   return (
     <>
-      <header/>
+      <Header/>
       <Outlet/>
+    
     </>
   )
 }

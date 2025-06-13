@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CLogin = () => {
+const ClientRegister = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const CLogin = () => {
   )
 }
 
-export default CLogin
+export default ClientRegister

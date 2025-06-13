@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CHome = () => {
+const ClientFavorites = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const CHome = () => {
   )
 }
 
-export default CHome
+export default ClientFavorites

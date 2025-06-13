@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CAbout = () => {
+const ClientContact = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const CAbout = () => {
   )
 }
 
-export default CAbout
+export default ClientContact

@@ -1,7 +1,6 @@
-
 import React from 'react'
 
-const CBasket = () => {
+const ClientProducts = () => {
   return (
     <div>
       
@@ -9,4 +8,4 @@ const CBasket = () => {
   )
 }
 
-export default CBasket
+export default ClientProducts

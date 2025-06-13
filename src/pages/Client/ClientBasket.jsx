@@ -1,6 +1,7 @@
+
 import React from 'react'
 
-const CFavorites = () => {
+const ClientBasket = () => {
   return (
     <div>
       
@@ -8,4 +9,4 @@ const CFavorites = () => {
   )
 }
 
-export default CFavorites
+export default ClientBasket
