@@ -1,4 +1,5 @@
 import React from 'react'
+import { SnackbarProvider, enqueueSnackbar } from 'notistack'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -8,7 +9,9 @@ const routes=createBrowserRouter(ROUTES)
 const App = () => {
   return (
     <>
+       <SnackbarProvider >
      <RouterProvider router={routes}/>
+     </SnackbarProvider>
     </>
   )
 }

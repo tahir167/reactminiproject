@@ -2,44 +2,60 @@
   "products": [
     {
       "id": "1",
-      "title": "Toyota",
-      "description": "Corolla",
-      "rating": 1,
+      "title": "Coca Cola Classic",
+      "title2": "Coca Cola",
+      "description": "Refreshing cola drink with the classic taste you love",
+      "rating": 4.5,
       "category": "Snack",
-      "pricePerNight": 45,
+      "price": 45,
       "availability": true,
-      "imageUrl": "",
-      "stock":"40 in stock"
-      
+      "imageUrl": "https://thumbs.dreamstime.com/b/moscow-russia-april-coca-cola-classic-bright-red-aluminum-can-ice-cubes-black-background-coca-cola-moscow-russia-216799922.jpg",
+      "stock": "40 in stock"
     },
     {
       "id": "2",
-      "brand": "BMW",
-      "model": "X5",
-      "year": 2022,
-      "type": "SUV",
-      "pricePerNight": 120,
-      "availability": false,
-      "imageUrl": ""
+      "title": "Pepsi Max",
+      "title2": "Pepsi",
+      "description": "Bold taste with zero sugar for maximum refreshment",
+      "rating": 4.2,
+      "category": "Snack",
+      "price": 42,
+      "availability": true,
+      "imageUrl": "https://www.britvic.com/media/dexpeq1a/pepsi-max-britvic.jpg?rxy=0.5002748581597487,0.50890699280567031&width=1200&height=600&v=1da47e3fc42b770",
+      "stock": "30 in stock"
     },
     {
       "id": "3",
-      "brand": "Honda",
-      "model": "Civic",
-      "year": 2021,
-      "type": "Sedan",
-      "pricePerNight": 55,
+      "title": "Fanta Orange",
+      "title2": "Fanta",
+      "description": "Orange flavored sparkling soft drink with fruity taste",
+      "rating": 4.3,
+      "category": "Snack",
+      "price": 40,
       "availability": true,
-      "imageUrl": ""
+      "imageUrl": "https://previews.123rf.com/images/cookelma/cookelma1501/cookelma150100160/35584247-moscow-russia-april-4-2014-can-of-coca-cola-company-soft-drink-fanta-orange-on-ice-fanta-is-a.jpg",
+      "stock": "25 in stock"
+    },
+    {
+      "id": "4",
+      "title": "Red Bull Energy",
+      "title2": "Red Bull",
+      "description": "Gives you wings - energy drink for performance and focus",
+      "rating": 4.7,
+      "category": "Beverage",
+      "price": 60,
+      "availability": true,
+      "imageUrl": "https://media.istockphoto.com/id/537022544/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%B0%D0%BB%D1%8E%D0%BC%D0%B8%D0%BD%D0%B8%D0%B9-%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%B8%D0%B7-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9-%D0%B1%D1%8B%D0%BA-%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BE%D0%BA-%D1%81%D0%BE-%D0%BB%D1%8C%D0%B4%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5.jpg?s=612x612&w=0&k=20&c=k57bxq18bhWZgZR00TCmH_PD1isiyiKpzSM9Qkj0v6g=",
+      "stock": "50 in stock"
     }
   ],
   "users": [
     {
       "id": "1",
       "fullName": "Tahir",
+      "profileImg": "",
       "email": "hgh@gmail.com",
-      "password":"111111",
-      "confirmPassword":"111111",
+      "password": "111111",
       "role": "Client",
       "phone": "0502666666",
       "registeredAt": "2024-01-15"
@@ -47,9 +63,9 @@
     {
       "id": "2",
       "fullName": "Aysel Huseynova",
+      "profileImg": "",
       "email": "aysel.huseynova@example.com",
-       "password":"111111",
-      "confirmPassword":"111111",
+      "password": "111111",
       "role": "Client",
       "phone": "0501234567",
       "registeredAt": "2024-03-10"
@@ -57,12 +73,22 @@
     {
       "id": "3",
       "fullName": "Elvin Mammadov",
+      "profileImg": "",
       "email": "elvin.mammadov@example.com",
-       "password":"111111",
-      "confirmPassword":"111111",
+      "password": "111111",
       "role": "Admin",
       "phone": "0519876543",
       "registeredAt": "2023-11-25"
+    },
+    {
+      "id": "f29e",
+      "fullName": "Tahir",
+      "email": "tahir@gmail.com",
+      "Password": "55555Mm.",
+      "role": "client",
+      "phone": "5555555555",
+      "profileImg": "https://media.istockphoto.com/id/537022544/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%B0%D0%BB%D1%8E%D0%BC%D0%B8%D0%BD%D0%B8%D0%B9-%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%B8%D0%B7-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9-%D0%B1%D1%8B%D0%BA-%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BE%D0%BA-%D1%81%D0%BE-%D0%BB%D1%8C%D0%B4%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5.jpg?s=612x612&w=0&k=20&c=k57bxq18bhWZgZR00TCmH_PD1isiyiKpzSM9Qkj0v6g=",
+      "registeredAt": "2025-06-15T20:17:55.743Z"
     }
   ],
   "rentals": [
