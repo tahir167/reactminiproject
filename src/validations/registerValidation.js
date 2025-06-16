@@ -29,6 +29,11 @@ const registerValidationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Please confirm your password"),
+
+  balance: Yup.number()
+    .typeError("Balance must be a number")
+    .min(0, "Balance cannot be negative")
+    .required("Balance is required"),
 });
 
 export default registerValidationSchema;

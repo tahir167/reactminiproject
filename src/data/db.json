@@ -58,7 +58,8 @@
       "password": "111111",
       "role": "Client",
       "phone": "0502666666",
-      "registeredAt": "2024-01-15"
+      "registeredAt": "2024-01-15",
+      "balance": 400
     },
     {
       "id": "2",
@@ -68,17 +69,19 @@
       "password": "111111",
       "role": "Client",
       "phone": "0501234567",
-      "registeredAt": "2024-03-10"
+      "registeredAt": "2024-03-10",
+      "balance": 400
     },
     {
       "id": "3",
       "fullName": "Elvin Mammadov",
       "profileImg": "",
       "email": "elvin.mammadov@example.com",
-      "password": "111111",
+      "password": "Ee44444.",
       "role": "Admin",
       "phone": "0519876543",
-      "registeredAt": "2023-11-25"
+      "registeredAt": "2023-11-25",
+      "balance": 400
     },
     {
       "id": "f29e",
@@ -88,7 +91,31 @@
       "role": "client",
       "phone": "5555555555",
       "profileImg": "https://media.istockphoto.com/id/537022544/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%B0%D0%BB%D1%8E%D0%BC%D0%B8%D0%BD%D0%B8%D0%B9-%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE-%D0%B8%D0%B7-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9-%D0%B1%D1%8B%D0%BA-%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9-%D0%BD%D0%B0%D0%BF%D0%B8%D1%82%D0%BE%D0%BA-%D1%81%D0%BE-%D0%BB%D1%8C%D0%B4%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5.jpg?s=612x612&w=0&k=20&c=k57bxq18bhWZgZR00TCmH_PD1isiyiKpzSM9Qkj0v6g=",
-      "registeredAt": "2025-06-15T20:17:55.743Z"
+      "registeredAt": "2025-06-15T20:17:55.743Z",
+      "balance": 400
+    },
+    {
+      "id": "9b19",
+      "fullName": "oscardemarcos",
+      "email": "oscar@gmail.com",
+      "Password": "Oo44444.",
+      "role": "client",
+      "phone": "4444444444",
+      "profileImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSutDFfnTLwqUXDqPbIN1Z_19BBY_sJEHAc9Q&s",
+      "registeredAt": "2025-06-16T00:29:45.444Z",
+      "balance": 400
+    },
+    {
+      "id": "735c",
+      "fullName": "memmed",
+      "email": "memmed@gmail.com",
+      "Password": "Nn11111.",
+      "role": "client",
+      "phone": "8888888888",
+      "profileImg": "https://imageio.forbes.com/specials-images/imageserve/5eceb201938ec500060ab1d6/0x0.jpg?format=jpg&crop=2664,2662,x1021,y585,safe&height=416&width=416&fit=bounds",
+      "balance": 55,
+      "registeredAt": "2025-06-16T00:47:39.052Z"
+      
     }
   ],
   "rentals": [

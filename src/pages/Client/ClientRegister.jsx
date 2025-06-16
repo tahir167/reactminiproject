@@ -5,10 +5,10 @@ import { enqueueSnackbar } from 'notistack'
 import controller from '../../services/requests/productsRequest'
 import { endpoints } from '../../constants'
 import registerValidationSchema from '../../../src/validations/registerValidation.js'
-import Password from 'antd/es/input/Password.js'
 
 const ClientRegister = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -17,6 +17,7 @@ const ClientRegister = () => {
       phone: "",
       password: "",
       confirmPassword: "",
+      balance: ""
     },
     validationSchema: registerValidationSchema,
     onSubmit: async (values, action) => {
@@ -33,16 +34,16 @@ const ClientRegister = () => {
           }
         });
       } else {
-      await  controller.post(endpoints.users,{
-          fullName:values.fullName,
-          email:values.email,
-          Password:values.password,
-          role:"client",
-          phone:values.phone,
-          profileImg:values.profileImg,
-          registeredAt:new Date()
-
-        })
+        await controller.post(endpoints.users, {
+          fullName: values.fullName,
+          email: values.email,
+          Password: values.password,
+          role: "client",
+          phone: values.phone,
+          profileImg: values.profileImg,
+          balance: Number(values.balance),
+          registeredAt: new Date()
+        });
         navigate("/login")
         enqueueSnackbar("User registered successfully", {
           variant: "success",
@@ -51,7 +52,6 @@ const ClientRegister = () => {
             vertical: "bottom",
             horizontal: "right"
           }
-          
         });
         action.resetForm();
       }
@@ -139,6 +139,20 @@ const ClientRegister = () => {
         />
         {formik.touched.profileImg && formik.errors.profileImg && (
           <p className="text-red-500 text-sm">{formik.errors.profileImg}</p>
+        )}
+
+        <input
+          name='balance'
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.balance}
+          type="number"
+          placeholder="Balance"
+          className="w-full p-2 border border-gray-300 rounded"
+          min={0}
+        />
+        {formik.touched.balance && formik.errors.balance && (
+          <p className="text-red-500 text-sm">{formik.errors.balance}</p>
         )}
 
         <button

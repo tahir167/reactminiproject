@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import { Link } from "react-router"
 import { useSelector, useDispatch } from 'react-redux'
 import { logOut } from '../../redux/features/userSlice'
-
+import { FaRegHeart } from "react-icons/fa";
+import { SlBasket } from "react-icons/sl";
+const userData = localStorage.getItem('user')
 const Header = () => {
   const user = useSelector((state) => state.user.user)
+  const favoritesCount = useSelector((state) => state.favorites.count)
   const dispatch = useDispatch()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleLogout = () => {
     dispatch(logOut()) 
     setDropdownOpen(false)
+    localStorage.removeItem(userData);
+
+
   }
 
   const toggleDropdown = () => {
@@ -28,22 +34,38 @@ const Header = () => {
           <li><Link to="/products" className='text-base'>Products</Link></li>
           <li><Link to="/adminlogin" className='text-base'>Admin Panel</Link></li>
         </ul>
+        
         <div className='flex gap-3'>
           {user ? (
-            <div className='relative'>
+            <div className='relative flex items-center gap-6'>
+              <div className="relative cursor-pointer">
+                <SlBasket className="text-xl" />
+              </div>
+              
+              <div className="relative cursor-pointer">
+                <Link to="/favorites">
+                  <FaRegHeart className="text-xl" />
+                  {favoritesCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
+                      {favoritesCount > 99 ? '99+' : favoritesCount}
+                    </span>
+                  )}
+                </Link>
+              </div>
+              
               <div 
                 onClick={toggleDropdown}
-                className='w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors'
+                className='w-10 h-10 rounded-full overflow-hidden cursor-pointer border border-gray-300'
               >
-                <span className='text-white font-medium text-sm'>
-                  {user?.fullName ? user.fullName.charAt(0).toUpperCase() : 
-                   user?.email ? user.email.charAt(0).toUpperCase() : 
-                   'U'}
-                </span>
+                <img 
+                  src={user?.profileImg || "/default-avatar.png"} 
+                  alt="User Avatar" 
+                  className="w-full h-full object-cover" 
+                />
               </div>
               
               {dropdownOpen && (
-                <div className='absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50'>
+                <div className='absolute right-0 top-12 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50'>
                   <div className='py-1'>
                     <div className='px-4 py-2 border-b border-gray-100'>
                       <p className='text-sm font-medium text-gray-900'>
@@ -63,10 +85,15 @@ const Header = () => {
                     </Link>
                     <Link 
                       to="/favorites" 
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between'
                       onClick={() => setDropdownOpen(false)}
                     >
-                      Favorites
+                      <span>Favorites</span>
+                      {favoritesCount > 0 && (
+                        <span className="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                          {favoritesCount}
+                        </span>
+                      )}
                     </Link>
                     <Link 
                       to="/basket" 
