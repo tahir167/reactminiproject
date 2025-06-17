@@ -1,4 +1,3 @@
-// src/pages/Client/AdminLogin.js
 
 import React from 'react';
 import { useFormik } from 'formik';
@@ -6,17 +5,15 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
-import controller from '../../services/requests/productsRequest'; // Yolunu tənzimləyin
-import { endpoints } from '../../constants'; // Yolunu tənzimləyin
+import controller from '../../services/requests/productsRequest'; 
+import { endpoints } from '../../constants'; 
 
-// userSlice-dan 'login' action-unu import edin
 import { login } from '../../redux/features/userSlice'; 
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Yup istifadə edərək validasiya sxemi
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Yanlış e-poçt formatı')
@@ -26,7 +23,6 @@ const AdminLogin = () => {
       .required('Parol mütləq doldurulmalıdır'),
   });
 
-  // Formik konfiqurasiyası
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -37,29 +33,20 @@ const AdminLogin = () => {
       try {
         setSubmitting(true);
         
-        // Real tətbiqdə, admini autentifikasiya etmək üçün backend-ə sorğu göndərməlisiniz.
-        // Hal-hazırda, biz bunu lokal JSON serverdən və ya sabit bir admin məlumatından yoxlamaqla simulyasiya edirik.
-        
-        // Admini tapmaq üçün bütün istifadəçiləri çəkin.
-        // XƏBƏRDARLIQ: İstehsal (production) tətbiqində, giriş üçün bütün istifadəçiləri çəkmək təhlükəsizlik riskidir.
-        // Kimlikləri autentifikasiya edən xüsusi bir giriş API endpoint-i olmalıdır.
         const users = await controller.getAll(endpoints.users);
         const adminUser = users.find(
           (u) => u.email === values.email && u.password === values.password && u.role === 'admin'
         );
 
         if (adminUser) {
-          // Giriş uğurlu
-          dispatch(login(adminUser)); // Redux-a admin məlumatlarını göndərin
+          dispatch(login(adminUser)); 
           enqueueSnackbar(`Xoş gəldiniz, ${adminUser.fullName || adminUser.email}!`, {
             variant: 'success',
             autoHideDuration: 2000,
             anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
           });
-          // Admin paneline yönləndirin
           navigate('/admin', { replace: true });
         } else {
-          // Giriş uğursuz
           enqueueSnackbar('Yanlış e-poçt və ya parol, ya da admin səlahiyyətləriniz yoxdur.', {
             variant: 'error',
             autoHideDuration: 3000,

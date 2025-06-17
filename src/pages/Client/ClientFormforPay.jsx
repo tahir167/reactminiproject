@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; // useEffect və useState əlavə edildi
+import React, { useEffect, useState } from 'react'; 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,11 +14,10 @@ const ClientFormforPay = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [detailedBasketItems, setDetailedBasketItems] = useState([]); // Ətraflı məhsul məlumatları üçün state
-  const [loadingBasket, setLoadingBasket] = useState(true); // Səbət məlumatlarının yüklənmə statusu
-  const [totalOrderPrice, setTotalOrderPrice] = useState(0); // Ümumi sifariş qiyməti
+  const [detailedBasketItems, setDetailedBasketItems] = useState([]); 
+  const [loadingBasket, setLoadingBasket] = useState(true); 
+  const [totalOrderPrice, setTotalOrderPrice] = useState(0); 
 
-  // Səbətdəki məhsulların detallarını yükləmək üçün useEffect
   useEffect(() => {
     const fetchBasketDetails = async () => {
       if (!user || basketItems.length === 0) {
@@ -32,7 +31,7 @@ const ClientFormforPay = () => {
       const productPromises = basketItems.map(async (item) => {
         try {
           const product = await controller.getOne(endpoints.products, item.productId);
-          return { ...product, quantity: item.quantity }; // Məhsulun öz detalları + səbətdəki miqdar
+          return { ...product, quantity: item.quantity }; 
         } catch (error) {
           console.error(`Error fetching product ${item.productId} for checkout:`, error);
           enqueueSnackbar(`Məhsul detalları yüklənərkən xəta: ${item.productId}`, { variant: "error" });
@@ -51,10 +50,9 @@ const ClientFormforPay = () => {
     };
 
     fetchBasketDetails();
-  }, [basketItems, user]); // basketItems və user dəyişəndə yenidən yüklə
+  }, [basketItems, user]); 
 
 
-  // Validasiya sxemi
   const validationSchema = Yup.object({
     country: Yup.string()
       .required('Ölkə sahəsi mütləq doldurulmalıdır')
@@ -73,7 +71,6 @@ const ClientFormforPay = () => {
       .min(3, 'Sifariş qeydi ən azı 3 hərf olmalıdır')
   });
 
-  // Formik konfiqurasiyası
   const formik = useFormik({
     initialValues: {
       country: '',
@@ -99,45 +96,38 @@ const ClientFormforPay = () => {
           return;
         }
 
-        // `detailedBasketItems` artıq ətraflı məlumatları ehtiva edir, ona görə bir daha API çağırışı etməyə ehtiyac yoxdur.
         const productsForOrder = detailedBasketItems.map(item => ({
-          productId: item.id, // Və ya item.productId, hansı sahədən istifadə edirsinizsə
+          productId: item.id, 
           name: item.title,
           quantity: item.quantity,
           price: item.price
         }));
 
-        // `totalOrderPrice` state-dən istifadə edin
         const finalTotalPrice = totalOrderPrice.toFixed(2);
 
 
-        // Yeni sifariş obyekti
         const newOrder = {
-          id: Date.now().toString(), // Sadə ID generatoru
+          id: Date.now().toString(), 
           userId: user.id,
           products: productsForOrder,
-          orderDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD formatında
+          orderDate: new Date().toISOString().split('T')[0], 
           country: values.country,
           city: values.city,
-          "street adress": values.streetAddress, // DB strukturuna uyğun
+          "street adress": values.streetAddress, 
           phoneNumber: values.phoneNumber,
           orderNote: values.orderNote,
           totalPrice: finalTotalPrice
         };
 
-        // Sifarişi rentals-a əlavə et
         const response = await controller.post(endpoints.rentals, newOrder);
 
         if (response.status === 201 || response.status === 200) {
-          // Uğurlu sifariş
           enqueueSnackbar('Sifarişiniz uğurla verilmişdir!', {
             variant: 'success', autoHideDuration: 3000, anchorOrigin: { vertical: 'bottom', horizontal: 'right' }
           });
 
-          // Səbəti təmizlə
           dispatch(clearBasket());
 
-          // Ana səhifəyə yönləndir
           setTimeout(() => {
             navigate('/');
           }, 2000);
@@ -156,7 +146,6 @@ const ClientFormforPay = () => {
     }
   });
 
-  // Əgər istifadəçi daxil olmayıbsa
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -174,7 +163,6 @@ const ClientFormforPay = () => {
     );
   }
 
-  // Səbət məlumatları yüklənirsə
   if (loadingBasket) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -186,7 +174,6 @@ const ClientFormforPay = () => {
     );
   }
 
-  // Əgər səbət boşdursa
   if (detailedBasketItems.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -206,15 +193,13 @@ const ClientFormforPay = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8"> {/* Layout dəyişdirildi */}
-        {/* Sifariş Formu */}
+      <div className="w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8"> 
         <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-md">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
             Çatdırılma Məlumatları
           </h1>
 
           <form onSubmit={formik.handleSubmit} className="space-y-6">
-            {/* Ölkə */}
             <div>
               <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
                 Ölkə *
@@ -238,7 +223,6 @@ const ClientFormforPay = () => {
               )}
             </div>
 
-            {/* Şəhər */}
             <div>
               <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
                 Şəhər *
@@ -262,7 +246,6 @@ const ClientFormforPay = () => {
               )}
             </div>
 
-            {/* Küçə ünvanı */}
             <div>
               <label htmlFor="streetAddress" className="block text-sm font-medium text-gray-700 mb-1">
                 Küçə ünvanı *
@@ -286,7 +269,6 @@ const ClientFormforPay = () => {
               )}
             </div>
 
-            {/* Telefon nömrəsi */}
             <div>
               <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
                 Telefon nömrəsi *
@@ -310,7 +292,6 @@ const ClientFormforPay = () => {
               )}
             </div>
 
-            {/* Sifariş qeydi */}
             <div>
               <label htmlFor="orderNote" className="block text-sm font-medium text-gray-700 mb-1">
                 Sifariş qeydi *
@@ -334,7 +315,6 @@ const ClientFormforPay = () => {
               )}
             </div>
 
-            {/* Düymələr */}
             <div className="flex gap-4 pt-4">
               <button
                 type="button"
@@ -345,20 +325,19 @@ const ClientFormforPay = () => {
               </button>
               <button
                 type="submit"
-                disabled={formik.isSubmitting || !formik.isValid || detailedBasketItems.length === 0} // Səbət boşdursa deaktiv et
+                disabled={formik.isSubmitting || !formik.isValid || detailedBasketItems.length === 0} 
                 className={`flex-1 py-3 px-4 rounded-md text-white font-semibold transition-colors ${
                   formik.isSubmitting || !formik.isValid || detailedBasketItems.length === 0
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-green-600 hover:bg-green-700'
                 }`}
               >
-                {formik.isSubmitting ? 'Göndərilir...' : `Sifarişi ver (${totalOrderPrice.toFixed(2)}$)`} {/* Ümumi qiyməti göstər */}
+                {formik.isSubmitting ? 'Göndərilir...' : `Sifarişi ver (${totalOrderPrice.toFixed(2)}$)`} 
               </button>
             </div>
           </form>
         </div>
 
-        {/* Səbət məhsulları xülasəsi */}
         <div className="lg:col-span-1 bg-white p-6 rounded-lg shadow-md h-fit">
             <h2 className="text-2xl font-bold mb-4">Sifariş Xülasəsi</h2>
             {detailedBasketItems.map((item) => (

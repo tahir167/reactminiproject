@@ -6,7 +6,7 @@ import { enqueueSnackbar } from 'notistack';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toggleFavorite } from '../../redux/features/favoritesSlice';
-import { addToBasket } from '../../redux/features/basketSlice'; // addToBasket import edildi
+import { addToBasket } from '../../redux/features/basketSlice'; 
 import controller from '../../services/requests/productsRequest.js';
 
 const ClientFavorites = () => {
@@ -48,11 +48,11 @@ const ClientFavorites = () => {
     };
 
     fetchFavoriteProducts();
-  }, [favorites]); // favorites array-i dəyişdikdə yenidən yüklə
+  }, [favorites]); 
 
   const handleAddToBasket = (product) => {
     if (user && user.role === "client") {
-      dispatch(addToBasket({ productId: product.id, quantity: 1 })); // addToBasket dispatch edildi
+      dispatch(addToBasket({ productId: product.id, quantity: 1 })); 
       enqueueSnackbar(`${product.title} added to basket successfully`, {
         variant: "success",
         autoHideDuration: 2000,

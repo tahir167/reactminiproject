@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// getFavoritesFromStorage və saveFavoritesToStorage funksiyaları artıq store.js-də yerləşdirilib.
-// Slice sadəcə state-i idarə edir.
 
 export const favoritesSlice = createSlice({
   name: 'favorites',

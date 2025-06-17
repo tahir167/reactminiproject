@@ -8,10 +8,8 @@ export const basketSlice = createSlice({
   },
   reducers: {
     setBasket: (state, action) => {
-      // Payload-un düzgün formatda olduğundan əmin olun
       const payload = action.payload || { items: [], totalCount: 0 };
       state.items = Array.isArray(payload.items) ? payload.items : [];
-      // totalCount-u items sayına uyğun hesabla
       state.totalCount = state.items.length;
     },
     addToBasket: (state, action) => {
@@ -32,7 +30,7 @@ export const basketSlice = createSlice({
        
       if (index !== -1) {
         state.items.splice(index, 1);
-        state.totalCount = state.items.length; // totalCount-u yenidən hesabla
+        state.totalCount = state.items.length; 
       }
     },
     updateBasketQuantity: (state, action) => {
@@ -42,7 +40,6 @@ export const basketSlice = createSlice({
        
       if (itemToUpdate) {
         if (quantity <= 0) {
-          // Məhsulu sil
           state.items = state.items.filter(item => String(item.productId) !== stringProductId);
           state.totalCount = state.items.length;
         } else {

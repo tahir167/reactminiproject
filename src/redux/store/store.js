@@ -13,7 +13,6 @@ export const store = configureStore({
   },
 });
 
-// Yardımçı funksiyalar: localStorage-a yazmaq üçün
 const saveFavoritesToStorage = (userId, favoritesData) => {
   try {
     if (userId) {
@@ -34,14 +33,12 @@ const saveBasketToStorage = (userId, basketData) => {
   }
 };
 
-// Bu funksiya tətbiq başladığında və ya istifadəçi dəyişəndə məlumatları yükləyəcək
 const loadUserDataAndPreferences = async () => {
   const currentUser = store.getState().user.user;
   if (currentUser && currentUser.id) {
     try {
       const userData = await controller.getOne(endpoints.users, currentUser.id);
       if (userData) {
-        // Favoriləri yüklə
         const storedFavorites = localStorage.getItem(`favorites_${currentUser.id}`);
         let favoritesToLoad = [];
         if (storedFavorites) {
@@ -59,7 +56,6 @@ const loadUserDataAndPreferences = async () => {
         }
         store.dispatch(setFavorites(favoritesToLoad));
 
-        // Səbəti yüklə - Bu hissədə problem var idi
         const storedBasket = localStorage.getItem(`basket_${currentUser.id}`);
         let basketToLoad = { items: [], totalCount: 0 }; 
 
@@ -78,12 +74,10 @@ const loadUserDataAndPreferences = async () => {
             saveBasketToStorage(currentUser.id, basketToLoad);
           }
         } else {
-          // localStorage-da yoxdursa, DB-dan yüklə
           basketToLoad = userData.basket || { items: [], totalCount: 0 };
           saveBasketToStorage(currentUser.id, basketToLoad);
         }
         
-        // Burada düzəliş: basketToLoad-un düzgün formatda olduğundan əmin olun
         if (!basketToLoad.items) basketToLoad.items = [];
         if (typeof basketToLoad.totalCount !== 'number') {
           basketToLoad.totalCount = basketToLoad.items.length;
@@ -100,30 +94,25 @@ const loadUserDataAndPreferences = async () => {
   }
 };
 
-// Tətbiq başladığında məlumatları yüklə
 loadUserDataAndPreferences();
 
 let currentUserId = store.getState().user.user?.id;
 let previousFavoritesState = [];
 let previousBasketState = { items: [], totalCount: 0 };
 
-// Redux store-dakı dəyişiklikləri izlə
 store.subscribe(async () => {
   const previousUserId = currentUserId;
   const currentUser = store.getState().user.user;
   currentUserId = currentUser?.id;
 
-  // İstifadəçi ID-si dəyişdikdə məlumatları yenidən yüklə
   if (previousUserId !== currentUserId) {
     await loadUserDataAndPreferences();
-    // Yeni istifadəçi üçün əvvəlki state-ləri yenilə
     previousFavoritesState = store.getState().favorites.favorites;
     previousBasketState = store.getState().basket;
     return;
   }
 
   if (currentUser && currentUser.id) {
-    // Favoritlərin dəyişikliyini yoxla
     const currentFavoritesState = store.getState().favorites.favorites;
     if (JSON.stringify(currentFavoritesState) !== JSON.stringify(previousFavoritesState)) {
       previousFavoritesState = [...currentFavoritesState];
@@ -137,7 +126,6 @@ store.subscribe(async () => {
       }
     }
 
-    // Səbətin dəyişikliyini yoxla
     const currentBasketState = store.getState().basket;
     if (JSON.stringify(currentBasketState) !== JSON.stringify(previousBasketState)) {
       previousBasketState = { ...currentBasketState, items: [...currentBasketState.items] };

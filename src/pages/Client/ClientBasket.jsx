@@ -1,4 +1,3 @@
-// src/pages/Client/ClientBasket.js
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -66,7 +65,6 @@ const ClientBasket = () => {
     return detailedBasketItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
   };
 
-  // Checkout düyməsi üçün handler
   const handleProceedToCheckout = () => {
     if (!user) {
       enqueueSnackbar("Zəhmət olmasa əvvəlcə daxil olun", {
@@ -87,7 +85,6 @@ const ClientBasket = () => {
       return;
     }
 
-    // Doğru yola yönləndirmə
     navigate('/clientformforpay');
   };
 
@@ -196,7 +193,7 @@ const ClientBasket = () => {
               <span>${calculateTotalPrice()}</span>
             </div>
             <button
-              onClick={handleProceedToCheckout} // Yönləndirmə buradan idarə olunur
+              onClick={handleProceedToCheckout} 
               className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-green-700 transition-colors"
             >
               Proceed to Checkout

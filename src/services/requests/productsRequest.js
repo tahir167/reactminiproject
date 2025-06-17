@@ -12,7 +12,7 @@ const getAll = async (endpoint) => {
 
 const getOne = async (endpoint, id) => {
    try {
-     let response = await instance.get(endpoint + `/${id}`); // Düzəliş burada idi
+     let response = await instance.get(endpoint + `/${id}`); 
      return response.data;
    } catch (error) {
      return error;
@@ -30,7 +30,7 @@ const post = async (endpoint, newData) => {
 
 const deleteData = async (endpoint, id) => {
    try {
-     let response = await instance.delete(endpoint + `/${id}`); // Düzəliş burada idi
+     let response = await instance.delete(endpoint + `/${id}`); 
      return response;
    } catch (error) {
      return error;
@@ -39,7 +39,7 @@ const deleteData = async (endpoint, id) => {
 
 const patch = async (endpoint, id, updatedData) => {
    try {
-     let response = await instance.patch(endpoint + `/${id}`, updatedData); // Düzəliş burada idi
+     let response = await instance.patch(endpoint + `/${id}`, updatedData); 
      return response;
    } catch (error) {
      return error;
