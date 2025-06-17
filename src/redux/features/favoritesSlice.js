@@ -1,42 +1,55 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  favorites: [], 
-  count: 0
-}
+const getFavoritesFromStorage = (userId) => {
+  try {
+    const favoritesData = localStorage.getItem(`favorites_${userId}`);
+    return favoritesData ? JSON.parse(favoritesData) : [];
+  } catch (error) {
+    console.error('Error getting favorites from localStorage:', error);
+    return [];
+  }
+};
+
+const saveFavoritesToStorage = (userId, favoritesData) => {
+  try {
+    if (userId) {
+      localStorage.setItem(`favorites_${userId}`, JSON.stringify(favoritesData));
+    } else {
+      localStorage.removeItem('favorites');
+    }
+  } catch (error) {
+    console.error('localStorage error:', error);
+  }
+};
 
 export const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState,
+  initialState: {
+    favorites: [],
+    count: 0
+  },
   reducers: {
-    addToFavorites: (state, action) => {
-      const productId = action.payload
-      if (!state.favorites.includes(productId)) {
-        state.favorites.push(productId)
-        state.count += 1
-      }
-    },
-    removeFromFavorites: (state, action) => {
-      const productId = action.payload
-      const index = state.favorites.indexOf(productId)
-      if (index !== -1) {
-        state.favorites.splice(index, 1)
-        state.count -= 1
-      }
+    setFavorites: (state, action) => {
+      state.favorites = action.payload.map(id => String(id));
+      state.count = state.favorites.length;
     },
     toggleFavorite: (state, action) => {
-      const productId = action.payload
-      const index = state.favorites.indexOf(productId)
+      const productId = String(action.payload);
+      const index = state.favorites.indexOf(productId);
       if (index !== -1) {
-        state.favorites.splice(index, 1)
-        state.count -= 1
+        state.favorites.splice(index, 1);
+        state.count -= 1;
       } else {
-        state.favorites.push(productId)
-        state.count += 1
+        state.favorites.push(productId);
+        state.count += 1;
       }
+    },
+    clearFavorites: (state) => {
+      state.favorites = [];
+      state.count = 0;
     }
   }
-})
+});
 
-export const { addToFavorites, removeFromFavorites, toggleFavorite } = favoritesSlice.actions
-export default favoritesSlice.reducer
+export const { setFavorites, toggleFavorite, clearFavorites } = favoritesSlice.actions;
+export default favoritesSlice.reducer;

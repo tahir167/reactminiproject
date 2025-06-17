@@ -1,28 +1,26 @@
 import React, { useState } from 'react'
-import { Link } from "react-router"
+import { Link } from "react-router-dom" 
 import { useSelector, useDispatch } from 'react-redux'
 import { logOut } from '../../redux/features/userSlice'
 import { FaRegHeart } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
-const userData = localStorage.getItem('user')
+
 const Header = () => {
   const user = useSelector((state) => state.user.user)
   const favoritesCount = useSelector((state) => state.favorites.count)
+  const basketTotalCount = useSelector((state) => state.basket.totalCount)
   const dispatch = useDispatch()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleLogout = () => {
-    dispatch(logOut()) 
+    dispatch(logOut())
     setDropdownOpen(false)
-    localStorage.removeItem(userData);
-
-
   }
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen)
   }
-  
+
   return (
     <nav className='flex items-center h-[9vh] bg-white shadow relative'>
       <div className='w-[80%] flex justify-between items-center mx-auto'>
@@ -34,14 +32,21 @@ const Header = () => {
           <li><Link to="/products" className='text-base'>Products</Link></li>
           <li><Link to="/adminlogin" className='text-base'>Admin Panel</Link></li>
         </ul>
-        
+
         <div className='flex gap-3'>
           {user ? (
             <div className='relative flex items-center gap-6'>
               <div className="relative cursor-pointer">
-                <SlBasket className="text-xl" />
+                <Link to="/basket">
+                  <SlBasket className="text-xl" />
+                  {basketTotalCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
+                      {basketTotalCount > 99 ? '99+' : basketTotalCount}
+                    </span>
+                  )}
+                </Link>
               </div>
-              
+
               <div className="relative cursor-pointer">
                 <Link to="/favorites">
                   <FaRegHeart className="text-xl" />
@@ -52,18 +57,18 @@ const Header = () => {
                   )}
                 </Link>
               </div>
-              
-              <div 
+
+              <div
                 onClick={toggleDropdown}
                 className='w-10 h-10 rounded-full overflow-hidden cursor-pointer border border-gray-300'
               >
-                <img 
-                  src={user?.profileImg || "/default-avatar.png"} 
-                  alt="User Avatar" 
-                  className="w-full h-full object-cover" 
+                <img
+                  src={user?.profileImg || "/default-avatar.png"}
+                  alt="User Avatar"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {dropdownOpen && (
                 <div className='absolute right-0 top-12 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50'>
                   <div className='py-1'>
@@ -76,15 +81,15 @@ const Header = () => {
                         <p className='text-xs text-gray-400'>ID: {user.id}</p>
                       )}
                     </div>
-                    <Link 
-                      to="/profile" 
+                    <Link
+                      to="/profile"
                       className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                       onClick={() => setDropdownOpen(false)}
                     >
                       Profile
                     </Link>
-                    <Link 
-                      to="/favorites" 
+                    <Link
+                      to="/favorites"
                       className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between'
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -95,15 +100,20 @@ const Header = () => {
                         </span>
                       )}
                     </Link>
-                    <Link 
-                      to="/basket" 
-                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                    <Link
+                      to="/basket"
+                      className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center justify-between'
                       onClick={() => setDropdownOpen(false)}
                     >
-                      Basket
+                      <span>Basket</span>
+                      {basketTotalCount > 0 && (
+                        <span className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                          {basketTotalCount}
+                        </span>
+                      )}
                     </Link>
                     <hr className='my-1' />
-                    <button 
+                    <button
                       onClick={handleLogout}
                       className='block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100'
                     >
