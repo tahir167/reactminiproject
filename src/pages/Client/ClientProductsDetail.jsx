@@ -7,7 +7,7 @@ import controller from '../../services/requests/productsRequest';
 import { endpoints } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../redux/features/favoritesSlice';
-import { addToBasket } from '../../redux/features/basketSlice'; 
+import { addToBasket } from '../../redux/features/basketSlice';
 import { enqueueSnackbar } from 'notistack';
 import { FaHeart } from 'react-icons/fa';
 const ClientproductsDetail = () => {

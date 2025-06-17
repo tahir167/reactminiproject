@@ -16,6 +16,7 @@ import ClinetHome from "../pages/Client/ClinetHome";
 import ClientProfile from "../pages/Client/ClientProfile";
 import ProtectedRoute from "../components/common/protectedroute";
 import ClientProducts from "../pages/Client/ClientProducts";
+import ClientFormforPay from "../pages/Client/ClientFormforPay";
 const ROUTES = [
   {
     element: <AdminLayout />,
@@ -65,6 +66,10 @@ const ROUTES = [
       {
         path: "contact",
         element: <ClientContact />,
+      },
+       {
+        path: "clientformforpay",
+        element: <ClientFormforPay />,
       },
       {
         element: <ProtectedRoute role="client" />,

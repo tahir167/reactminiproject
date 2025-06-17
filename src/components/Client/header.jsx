@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom" 
-import { useSelector, useDispatch } from 'react-redux'
-import { logOut } from '../../redux/features/userSlice'
+// src/layout/Client/Header.js
+
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { logOut } from '../../redux/features/userSlice';
 import { FaRegHeart } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 
 const Header = () => {
-  const user = useSelector((state) => state.user.user)
-  const favoritesCount = useSelector((state) => state.favorites.count)
-  const basketTotalCount = useSelector((state) => state.basket.totalCount)
-  const dispatch = useDispatch()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const user = useSelector((state) => state.user.user);
+  const favoritesCount = useSelector((state) => state.favorites.count);
+  const basketTotalCount = useSelector((state) => state.basket.totalCount);
+  const dispatch = useDispatch();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = () => {
-    dispatch(logOut())
-    setDropdownOpen(false)
-  }
+    dispatch(logOut());
+    setDropdownOpen(false);
+  };
 
   const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen)
-  }
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <nav className='flex items-center h-[9vh] bg-white shadow relative'>
@@ -136,7 +138,7 @@ const Header = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

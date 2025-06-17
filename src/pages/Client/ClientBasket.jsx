@@ -1,15 +1,19 @@
+// src/pages/Client/ClientBasket.js
+
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { enqueueSnackbar } from 'notistack';
 import controller from '../../services/requests/productsRequest';
 import { endpoints } from '../../constants';
 import { removeFromBasket, updateBasketQuantity } from '../../redux/features/basketSlice';
 import { SlBasket } from 'react-icons/sl';
+
 const ClientBasket = () => {
   const user = useSelector((state) => state.user.user);
   const basketItems = useSelector((state) => state.basket.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [detailedBasketItems, setDetailedBasketItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +43,7 @@ const ClientBasket = () => {
     };
 
     fetchBasketDetails();
-  }, [basketItems, user]); 
+  }, [basketItems, user]);
 
   const handleRemoveFromBasket = (productId) => {
     dispatch(removeFromBasket(productId));
@@ -60,6 +64,31 @@ const ClientBasket = () => {
 
   const calculateTotalPrice = () => {
     return detailedBasketItems.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
+  };
+
+  // Checkout düyməsi üçün handler
+  const handleProceedToCheckout = () => {
+    if (!user) {
+      enqueueSnackbar("Zəhmət olmasa əvvəlcə daxil olun", {
+        variant: "error",
+        autoHideDuration: 2000,
+        anchorOrigin: { vertical: "bottom", horizontal: "right" }
+      });
+      navigate('/login');
+      return;
+    }
+
+    if (detailedBasketItems.length === 0) {
+      enqueueSnackbar("Səbətiniz boşdur", {
+        variant: "error",
+        autoHideDuration: 2000,
+        anchorOrigin: { vertical: "bottom", horizontal: "right" }
+      });
+      return;
+    }
+
+    // Doğru yola yönləndirmə
+    navigate('/clientformforpay');
   };
 
   if (!user) {
@@ -166,7 +195,10 @@ const ClientBasket = () => {
               <span>Total:</span>
               <span>${calculateTotalPrice()}</span>
             </div>
-            <button className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-green-700 transition-colors">
+            <button
+              onClick={handleProceedToCheckout} // Yönləndirmə buradan idarə olunur
+              className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-green-700 transition-colors"
+            >
               Proceed to Checkout
             </button>
           </div>

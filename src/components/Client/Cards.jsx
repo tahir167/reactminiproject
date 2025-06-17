@@ -13,9 +13,9 @@ const Cards = ({ products }) => {
   const favorites = useSelector((state) => state.favorites.favorites);
   const dispatch = useDispatch();
 
-  const handleAddToBasket = (product, quantity = 1) => { 
+  const handleAddToBasket = (product, quantity = 1) => {
     if (user && user.role === "client") {
-      dispatch(addToBasket({ productId: product.id, quantity })); 
+      dispatch(addToBasket({ productId: product.id, quantity }));
       enqueueSnackbar(`${product.title} added to basket successfully`, {
         variant: "success",
         autoHideDuration: 2000,
@@ -96,7 +96,7 @@ const Cards = ({ products }) => {
               <div className='flex gap-2'>
                 <button
                   className='w-[70%] h-[40px] bg-black rounded-lg text-white flex gap-2 justify-center items-center hover:bg-gray-800 transition'
-                  onClick={() => handleAddToBasket(product)} 
+                  onClick={() => handleAddToBasket(product)}
                 >
                   <SlBasket /> Add to Basket
                 </button>

@@ -1,26 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const getFavoritesFromStorage = (userId) => {
-  try {
-    const favoritesData = localStorage.getItem(`favorites_${userId}`);
-    return favoritesData ? JSON.parse(favoritesData) : [];
-  } catch (error) {
-    console.error('Error getting favorites from localStorage:', error);
-    return [];
-  }
-};
-
-const saveFavoritesToStorage = (userId, favoritesData) => {
-  try {
-    if (userId) {
-      localStorage.setItem(`favorites_${userId}`, JSON.stringify(favoritesData));
-    } else {
-      localStorage.removeItem('favorites');
-    }
-  } catch (error) {
-    console.error('localStorage error:', error);
-  }
-};
+// getFavoritesFromStorage və saveFavoritesToStorage funksiyaları artıq store.js-də yerləşdirilib.
+// Slice sadəcə state-i idarə edir.
 
 export const favoritesSlice = createSlice({
   name: 'favorites',
