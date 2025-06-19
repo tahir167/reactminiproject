@@ -1,6 +1,5 @@
 {
   "products": [
-    
     {
       "id": "14",
       "title": "Toothpaste",
@@ -13,7 +12,7 @@
       "imageUrl": "https://www.mxwholesale.co.uk/cdn/shop/products/colgate_3.jpg?v=1602683792",
       "stock": 55
     },
-     {
+    {
       "id": "6",
       "title": "Kinder Bueno",
       "title2": "Kinder",
@@ -37,7 +36,7 @@
       "imageUrl": "https://i.ebayimg.com/images/g/oToAAOSwDa9g7VPH/s-l1200.jpg",
       "stock": 80
     },
-     {
+    {
       "id": "15",
       "title": "Shampoo 400ml",
       "title2": "Head & Shoulders",
@@ -72,7 +71,6 @@
       "imageUrl": "https://www.britvic.com/media/dexpeq1a/pepsi-max-britvic.jpg",
       "stock": 30
     },
-   
     {
       "id": "3",
       "title": "Fanta Orange",
@@ -85,7 +83,6 @@
       "imageUrl": "https://previews.123rf.com/images/cookelma/cookelma1501/cookelma150100160/35584247-moscow-russia-april-4-2014-can-of-coca-cola-company-soft-drink-fanta-orange-on-ice-fanta-is-a.jpg",
       "stock": 25
     },
-    
     {
       "id": "4",
       "title": "Red Bull Energy",
@@ -158,7 +155,6 @@
       "imageUrl": "https://cdn.metcash.media/image/upload/f_auto,c_limit,w_750,q_auto/igashop/images/298158",
       "stock": 65
     },
-    
     {
       "id": "11",
       "title": "Ayran",
@@ -207,7 +203,6 @@
       "imageUrl": "https://www.mxwholesale.co.uk/cdn/shop/products/colgate_3.jpg?v=1602683792",
       "stock": 55
     },
-    
     {
       "id": "16",
       "title": "Yogurt 500g",
@@ -316,7 +311,6 @@
       "imageUrl": "https://cdn.mafrservices.com/sys-master-root/hcb/h8d/48955684585502/375734_main.jpg",
       "stock": 70
     },
-    
     {
       "id": "26",
       "title": "Chewing Gum",
@@ -353,7 +347,6 @@
       "imageUrl": "https://generousfirst.cadbury.co.za/assets/milk-choc-B4stlcNE.png",
       "stock": 60
     }
-    
   ],
   "users": [
     {
