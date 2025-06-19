@@ -46,12 +46,23 @@ const patch = async (endpoint, id, updatedData) => {
    }
 };
 
+
+const put = async (endpoint, id, updatedData) => {
+   try {
+     
+     let response = await instance.put(`${endpoint}/${id}`, updatedData);
+     return response.data;
+   } catch (error) {
+     throw error;
+   }
+};
 const controller = {
    getAll: getAll,
    getOne: getOne,
    post: post,
    delete: deleteData,
    update: patch,
+   put: put
 };
 
 export default controller;

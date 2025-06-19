@@ -84,7 +84,7 @@ const Cards = ({ products }) => {
             <div className='w-[90%] mx-auto flex flex-col gap-2 my-3'>
               <h1 className='text-xl font-bold'>{product.title}</h1>
               <p>{product.title2}</p>
-              <p className="text-gray-600 text-sm">{product.description}</p>
+              <p className="text-gray-600 text-sm min-h-[40px]">{product.description}</p>
               <p className='flex items-center'>
                 {[...Array(5)].map((_, i) => (
                   <FaStar key={i} className="text-yellow-400 text-xl" />

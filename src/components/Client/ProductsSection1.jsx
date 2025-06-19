@@ -15,12 +15,12 @@ const ProductsSection1 = ({ search, setSearch, setCategory, setPriceFilter, setS
             value={search}
           />
           <select onChange={(e) => setCategory(e.target.value)} className="w-52 px-4 py-2 border rounded-md">
-            <option>All Categories</option>
-            <option>Beverages</option>
-            <option>Snacks</option>
-            <option>Dairy</option>
-            <option>Hygiene</option>
-            <option>Candy</option>
+            <option value="">All Categories</option> 
+            <option value="Beverage">Beverages</option>
+            <option value="Snack">Snacks</option>   
+            <option value="Dairy">Dairy</option>
+            <option value="Hygiene">Hygiene</option>
+            <option value="Candy">Candy</option>
           </select>
           <select onChange={(e) => setPriceFilter(e.target.value)} className="w-52 px-4 py-2 border rounded-md">
             <option>All Prices</option>
@@ -33,7 +33,7 @@ const ProductsSection1 = ({ search, setSearch, setCategory, setPriceFilter, setS
             <option>Price:Low to High</option>
             <option>Price:High to Low</option>
             <option>Highest rated</option>
-            <option>Nevest First</option>
+            <option>Newest First</option> 
           </select>
         </div>
       </div>

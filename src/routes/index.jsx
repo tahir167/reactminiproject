@@ -1,9 +1,9 @@
 import { Children } from "react";
-import AdminLayout from "../layout/Admin/adminLayout";
+import AdminLayout from "../layout/Admin/adminLayout"; 
 import Dashboard from "../pages/Admin/dashboard";
-import Products from "../pages/Admin/products";
+import Products from "../pages/Admin/AdminProducts";
 import ClientLayout from "../layout/Client/clientLayout";
-import AdminLogin from "../pages/Client/adminLogin";
+import AdminLogin from "../pages/Client/adminLogin"; 
 import NotFound from "../pages/common/notFound";
 import ClientRegister from "../pages/Client/ClientRegister";
 import ClientproductsDetail from "../pages/Client/ClientProductsDetail";
@@ -17,22 +17,36 @@ import ClientProfile from "../pages/Client/ClientProfile";
 import ProtectedRoute from "../components/common/protectedroute";
 import ClientProducts from "../pages/Client/ClientProducts";
 import ClientFormforPay from "../pages/Client/ClientFormforPay";
+import AdminProducts from "../pages/Admin/AdminProducts";
+import AdminUsers from "../pages/Admin/AdminUsers";
+import AdminProfile from "../pages/Admin/adminProfile";
+
 const ROUTES = [
   {
+
     element: <AdminLayout />,
     children: [
       {
         element: <ProtectedRoute role="admin" />,
         children: [
           {
-            index: true,
-            path: "/admin",
+            path: "/admin", 
             element: <Dashboard />,
           },
-          
+          {
+            path: "/admin/products",
+            element: <AdminProducts />,
+          },
+          {
+            path: "/admin/users",
+            element: <AdminUsers />,
+          },
+          {
+            path: "/admin/profile",
+            element: <AdminProfile />,
+          },
         ],
       },
-     
     ],
   },
   {
@@ -56,7 +70,7 @@ const ROUTES = [
         element: <ClientLogin />,
       },
       {
-        path: "adminlogin",
+        path: "adminlogin", 
         element: <AdminLogin />,
       },
       {
@@ -67,7 +81,7 @@ const ROUTES = [
         path: "contact",
         element: <ClientContact />,
       },
-       {
+      {
         path: "clientformforpay",
         element: <ClientFormforPay />,
       },

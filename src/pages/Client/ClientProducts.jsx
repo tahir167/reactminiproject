@@ -31,10 +31,11 @@ const ClientProducts = () => {
       return true;
     })
     .sort((a, b) => {
+      if (sortOption === 'Name A-Z') return a.title.localeCompare(b.title); 
       if (sortOption === 'Price:Low to High') return a.price - b.price;
       if (sortOption === 'Price:High to Low') return b.price - a.price;
       if (sortOption === 'Highest rated') return b.rating - a.rating;
-      if (sortOption === 'Nevest First') return b.id - a.id;
+      if (sortOption === 'Newest First') return b.id - a.id; 
       return 0;
     });
 
