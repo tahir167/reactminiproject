@@ -28,6 +28,7 @@ const ClientProfile = () => {
 
     if (user) fetchOrders();
   }, [user]);
+  
 
   const handleAddBalance = async () => {
     const amount = parseFloat(addAmount);
@@ -113,33 +114,7 @@ const ClientProfile = () => {
       </div>
 
       {/* Sifarişlər */}
-      <div className='border border-gray-400 rounded-lg p-5'>
-        <h2 className='text-xl font-bold text-gray-800 mb-4'>Sifarişlərim</h2>
-        {loadingOrders ? (
-          <div className="flex justify-center py-6">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          </div>
-        ) : orders.length === 0 ? (
-          <p className='text-gray-500 text-center py-6'>Hələ heç bir sifarişiniz yoxdur.</p>
-        ) : (
-          <div className='flex flex-col gap-4'>
-            {orders.map(order => (
-              <div key={order.id} className='border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3'>
-                <div className='flex flex-col gap-1'>
-                  <p className='text-sm text-gray-500'>Sifariş ID: <span className='font-mono text-gray-700'>#{order.id}</span></p>
-                  <p className='text-sm text-gray-500'>Tarix: <span className='text-gray-700'>{order.orderDate}</span></p>
-                  <p className='text-sm text-gray-500'>Ünvan: <span className='text-gray-700'>{order.city}, {order.country}</span></p>
-                  <p className='text-sm text-gray-500'>Məhsullar: <span className='text-gray-700'>{order.products?.length || 0} əd.</span></p>
-                </div>
-                <div className='flex flex-col items-start sm:items-end gap-2'>
-                  <p className='text-lg font-bold text-gray-800'>${order.totalPrice}</p>
-                  <span className='text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium'>Tamamlandı</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      
 
     </div>
   )
