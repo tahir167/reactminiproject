@@ -64,12 +64,12 @@ const Cards = ({ products }) => {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-7 w-[80%] mx-auto mt-7">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-[80%] mx-auto mt-7">
       {products.map((product) => {
         const isFavorite = favorites.includes(product.id);
 
         return (
-          <div key={product.id} className="w-full h-[480px] border rounded-lg overflow-hidden relative">
+          <div key={product.id} className="w-full h-auto lg:h-[480px] border rounded-lg overflow-hidden relative">
             <div
               className='absolute left-[85%] top-[15px] w-[35px] h-[35px] bg-white rounded flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors shadow-sm'
               onClick={() => handleToggleFavorite(product.id)}

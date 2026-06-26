@@ -102,7 +102,7 @@ const ClientFavorites = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Please Login</h2>
           <p className="text-gray-600 mb-4">You need to be logged in to view your favorites.</p>
@@ -119,7 +119,7 @@ const ClientFavorites = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading your favorites...</p>
@@ -130,7 +130,7 @@ const ClientFavorites = () => {
 
   if (favoriteProducts.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <FaRegHeart className="text-6xl text-gray-300 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4">No Favorites Yet</h2>
@@ -148,22 +148,22 @@ const ClientFavorites = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="w-[80%] mx-auto">
+      <div className="w-[90%] lg:w-[80%] mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">My Favorites</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">My Favorites</h1>
           <p className="text-gray-600">
             You have {favoriteProducts.length} product{favoriteProducts.length !== 1 ? 's' : ''} in your favorites
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {favoriteProducts.map((product) => {
             const isFavorite = favorites.includes(product.id);
 
             return (
-              <div key={product.id} className="w-full h-[480px] border rounded-lg overflow-hidden relative bg-white shadow-sm hover:shadow-md transition-shadow">
+              <div key={product.id} className="w-full h-auto lg:h-[480px] border rounded-lg overflow-hidden relative bg-white shadow-sm hover:shadow-md transition-shadow">
                 <div
-                  className='absolute left-[85%] top-[15px] w-[35px] h-[35px] bg-white rounded flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors shadow-sm z-10'
+                  className='absolute right-[10px] top-[15px] w-[35px] h-[35px] bg-white rounded flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors shadow-sm z-10'
                   onClick={() => handleToggleFavorite(product.id)}
                 >
                   {isFavorite ? (
@@ -175,7 +175,7 @@ const ClientFavorites = () => {
                 <img
                   src={product.imageUrl || '/placeholder-image.jpg'}
                   alt={product.title}
-                  className='w-full h-[37%] object-cover'
+                  className='w-full h-[200px] lg:h-[37%] object-cover'
                 />
                 <div className='w-[90%] mx-auto flex flex-col gap-2 my-3'>
                   <h1 className='text-xl font-bold'>{product.title}</h1>
@@ -189,7 +189,7 @@ const ClientFavorites = () => {
                   </p>
                   <h1 className='text-xl font-bold'>${product.price}</h1>
                   <p className='text-green-500'>{product.stock || 0} in stock</p>
-                  <div className='flex gap-2'>
+                  <div className='flex gap-2 mb-3'>
                     <button
                       className='w-[70%] h-[40px] bg-black rounded-lg text-white flex gap-2 justify-center items-center hover:bg-gray-800 transition'
                       onClick={() => handleAddToBasket(product)}

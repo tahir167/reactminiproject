@@ -530,26 +530,23 @@
       "basket": {
         "items": [
           {
-            "productId": "3",
-            "quantity": 1
-          },
-          {
-            "productId": "2",
-            "quantity": 1
-          },
-          {
-            "productId": "4",
-            "quantity": 5
-          },
-          {
             "productId": "1",
-            "quantity": 3
+            "quantity": 12
+          },
+          {
+            "productId": "5",
+            "quantity": 27
+          },
+          {
+            "productId": "11",
+            "quantity": 1
           }
         ],
-        "totalCount": 4
+        "totalCount": 3
       },
       "favorites": [
-        "4"
+        "4",
+        "3"
       ]
     }
   ],

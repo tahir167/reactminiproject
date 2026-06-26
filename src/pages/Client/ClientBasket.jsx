@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -90,7 +89,7 @@ const ClientBasket = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Please Login</h2>
           <p className="text-gray-600 mb-4">You need to be logged in to view your basket.</p>
@@ -107,7 +106,7 @@ const ClientBasket = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading your basket...</p>
@@ -118,7 +117,7 @@ const ClientBasket = () => {
 
   if (detailedBasketItems.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
           <SlBasket className="text-6xl text-gray-300 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4">Your Basket is Empty</h2>
@@ -136,20 +135,23 @@ const ClientBasket = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="w-[80%] mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Your Shopping Basket</h1>
+      <div className="w-[90%] lg:w-[80%] mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Your Shopping Basket</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
+          <div className="lg:col-span-2 bg-white p-4 sm:p-6 rounded-lg shadow-md">
             {detailedBasketItems.map((item) => (
-              <div key={item.id} className="flex items-center border-b py-4 last:border-b-0">
+              <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center border-b py-4 last:border-b-0 gap-4 sm:gap-0">
                 <img
                   src={item.imageUrl}
                   alt={item.title}
-                  className="w-24 h-24 object-cover rounded-md mr-6"
+                  className="w-full sm:w-24 h-48 sm:h-24 object-cover rounded-md sm:mr-6"
                 />
-                <div className="flex-grow">
-                  <h2 className="text-xl font-semibold">{item.title}</h2>
+                <div className="flex-grow w-full">
+                  <div className="flex justify-between items-start">
+                    <h2 className="text-lg sm:text-xl font-semibold">{item.title}</h2>
+                    <p className="text-lg font-bold sm:hidden">${(item.price * item.quantity).toFixed(2)}</p>
+                  </div>
                   <p className="text-gray-600">${item.price.toFixed(2)}</p>
                   <div className="flex items-center mt-2">
                     <button
@@ -175,14 +177,14 @@ const ClientBasket = () => {
                     </button>
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="text-right hidden sm:block">
                   <p className="text-lg font-bold">${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="lg:col-span-1 bg-white p-6 rounded-lg shadow-md h-fit">
+          <div className="lg:col-span-1 bg-white p-4 sm:p-6 rounded-lg shadow-md h-fit">
             <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
             <div className="flex justify-between text-lg mb-2">
               <span>Subtotal ({basketItems.length} items):</span>
@@ -193,7 +195,7 @@ const ClientBasket = () => {
               <span>${calculateTotalPrice()}</span>
             </div>
             <button
-              onClick={handleProceedToCheckout} 
+              onClick={handleProceedToCheckout}
               className="w-full bg-green-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-green-700 transition-colors"
             >
               Proceed to Checkout
