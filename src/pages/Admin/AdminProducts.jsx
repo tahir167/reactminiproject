@@ -246,7 +246,7 @@ const AdminProducts = () => {
                                         <img src={product.imageUrl} alt={product.title} className="w-16 h-16 object-cover rounded" />
                                     </td>
                                     <td className="py-3 px-4 font-medium">{product.title}</td>
-                                    <td className="py-3 px-4">${product.price?.toFixed(2)}</td>
+                                    <td className="py-3 px-4">${product.price}</td>
                                     <td className="py-3 px-4">{product.stock}</td>
                                     <td className="py-3 px-4">{product.rating}</td>
                                     <td className="py-3 px-4">{product.category}</td>
