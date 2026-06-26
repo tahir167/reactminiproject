@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-      "start": "json-server --host 0.0.0.0 --port 10000 db.json"
-
+    "start": "json-server --host 0.0.0.0 --port 10000 db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +24,7 @@
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.11.8",
     "formik": "^2.4.6",
+    "json-server": "^1.0.0-beta.15",
     "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
