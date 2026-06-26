@@ -19,7 +19,7 @@ import ClientProducts from "../pages/Client/ClientProducts";
 import ClientFormforPay from "../pages/Client/ClientFormforPay";
 import AdminProducts from "../pages/Admin/AdminProducts";
 import AdminUsers from "../pages/Admin/AdminUsers";
-import AdminProfile from "../pages/Admin/adminProfile";
+import AdminProfile from "../pages/Admin/AdminProfile";
 
 const ROUTES = [
   {
