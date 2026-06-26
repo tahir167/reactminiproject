@@ -6,7 +6,7 @@ import { logOut } from '../../redux/features/userSlice';
 import { FaRegHeart } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 
-const Header = () => {
+const HeaderTemp = () => {
   const user = useSelector((state) => state.user.user);
   const favoritesCount = useSelector((state) => state.favorites.count);
   const basketTotalCount = useSelector((state) => state.basket.totalCount);
@@ -140,4 +140,4 @@ const Header = () => {
   );
 };
 
-export default Header; 
+export default HeaderTemp; 

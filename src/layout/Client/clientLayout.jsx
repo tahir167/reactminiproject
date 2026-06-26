@@ -1,12 +1,11 @@
 import React from 'react'
 import { Outlet } from "react-router"
-import Header from '../../components/Client/Header'
-
+import HeaderTemp from '../../components/Client/HeaderTemp'
 const ClientLayout = () => {
   
   return (
     <>
-      <Header/>
+      <HeaderTemp/>
       <Outlet/>
     </>
   )
