@@ -7,8 +7,8 @@ const registerValidationSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 
   profileImg: Yup.string()
-    .url("Must be a valid URL")
-    .required("Profile image URL is required"),
+    .url("Must be a valid URL"),
+   
 
   email: Yup.string()
     .email("Invalid email format")
